@@ -1,0 +1,56 @@
+.custom-navbar {
+    background-color: #4f4f4f; /* Change the background color to a darker gray */
+    color: white; /* Ensure text is white for better readability */
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff; /* Brand color */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #cccccc; /* Lighter gray for links */
+    margin-right: 1rem;
+    transition: color 0.3s;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ffffff; /* White on hover */
+  }
+  
+  .navbar-nav .nav-link.active {
+    color: #ffcc00; /* Highlight active link with a distinct color */
+    font-weight: bold;
+  }
+  
+  .navbar-toggler {
+    border: none; /* Remove default border */
+  }
+  
+  .navbar-toggler-icon {
+    color: #ffffff; /* Ensure the icon is visible */
+  }
+  
+  .dropdown-toggle {
+    color: #ffffff; /* Dropdown toggle text color */
+    text-decoration: none;
+    margin-right: 30px;
+    font: 1em sans-serif;
+  }
+  
+  .dropdown-menu {
+    background-color: #333333; /* Darker background for the dropdown */
+    color: white; /* White text for readability */
+  }
+  
+  .dropdown-item {
+    color: #ffffff; /* Ensure dropdown items are readable */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #555555; /* Slightly lighter gray on hover */
+    color: #ffcc00; /* Highlight text on hover */
+  }
+  

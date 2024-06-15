@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f0f0f0; /* Light gray background */
+      color: #333333; /* Darker gray text */
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background-color: #ffffff; /* White background for containers */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+    .card {
+      border: 1px solid #dedede;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card-title {
+      color: #333333; /* Darker gray color for card title */
+    }
+    .card-footer {
+      background-color: #e9ecef; /* Light gray background for card footer */
+    }
+    .btn-primary {
+      background-color: #6c757d; /* Gray background */
+      border-color: #6c757d; /* Gray border */
+    }
+    .btn-primary:hover {
+      background-color: #5a6268; /* Darker gray on hover */
+      border-color: #545b62; /* Darker gray on hover */
+    }
+    .btn-success {
+      background-color: #6c757d; /* Gray background */
+      border-color: #6c757d; /* Gray border */
+    }
+    .btn-success:hover {
+      background-color: #5a6268; /* Darker gray on hover */
+      border-color: #545b62; /* Darker gray on hover */
+    }
+    .tab-panel {
+      background-color: #f8f9fa; /* Light gray background for tabs */
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .heading strong {
+      color: #6c757d; /* Gray color for headings */
+    }
+    .card-img-wrapper {
+      max-height: 300px;
+      overflow: hidden;
+    }
+    .card-img-top {
+      width: 100%;
+      height: auto;
+    }
+    .btn-group .btn:not(:last-child) {
+      margin-right: 0.5rem; /* Space between buttons */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row shadow">
+      <div class="col-sm-4 p-0">
+        <div class="card">
+          <div class="card-img-wrapper">
+            <img *ngIf="mainPhotoUrl" class="card-img-top" src="{{mainPhotoUrl}}">
+            <img *ngIf="!mainPhotoUrl" class="card-img-top" src="assets/images/DefaultHouse.png" alt="PropertyImage">
+          </div>
+          <div class="card-body">
+            <h1 class="card-title">{{property.name}}</h1>
+            <div>
+              <strong>{{property.bhk}} BHK {{property.propertyType}} | ${{property.price}}</strong>
+            </div>
+            <div>
+              <strong>in {{property.CityId}}</strong>
+            </div>
+            <hr>
+            <div>
+              <strong>Build Area: </strong>
+              {{property.builtArea}} Sqft
+            </div>
+            <div>
+              <strong>Carpet Area: </strong>
+              {{property.carpetArea}} Sqft
+            </div>
+            <div>
+              <strong>Furnishing Type: </strong>
+              {{property.furnishingType}}
+            </div>
+            <div>
+              <strong>Available For: </strong>
+              <span *ngIf="property.sellRent==1">Purchase</span>
+              <span *ngIf="property.sellRent==2">Rent</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group d-flex">
+              <button class="btn btn-primary">Like</button>
+              <button class="btn btn-success">Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8 p-0">
+        <div class="tab-panel p-3">
+          <tabset class="member-tabset">
+            <tab heading="Overview">
+              <h1>Overview</h1>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="heading">
+                    <strong>Project Name</strong>
+                    <p>{{property.name}}</p>
+                  </div>
+                  <div class="heading">
+                    <strong>Floor Number</strong>
+                    <p>{{property.floorNo}} of {{property.totalFloors}}</p>
+                  </div>
+                  <div class="heading">
+                    <strong>Possession</strong>
+                    <p>{{property.estPossessionOn | date}}</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="heading">
+                    <strong>Main Entrance</strong>
+                    <p>{{property.mainEntrance}}</p>
+                  </div>
+                  <div class="heading">
+                    <strong>Gated Community</strong>
+                    <p>
+                      <span *ngIf="property.gated">Yes</span>
+                      <span *ngIf="!property.gated">No</span>
+                    </p>
+                  </div>
+                  <div class="heading">
+                    <strong>Security Deposit</strong>
+                    <p>{{property.security}}</p>
+                  </div>
+                  <div class="heading">
+                    <strong>Maintenance</strong>
+                    <p>{{property.maintenance}}</p>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="heading">
+                    <strong>About Property</strong>
+                    <p>{{property.description}}</p>
+                  </div>
+                </div>
+              </div>
+            </tab>
+            <tab heading="Address">
+              <div class="col-sm-12">
+                <h1>Address</h1>
+                <div class="heading">
+                  <strong>{{property.address}}</strong><br />
+                  <strong>{{property.address2}}</strong><br />
+                  <strong>{{property.CityId}}</strong>
+                </div>
+              </div>
+            </tab>
+            <tab heading="Photos">
+              <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+            </tab>
+            <tab heading="Upload/Edit Photos">
+              <app-photo-editor [property]="property" (mainPhotoChangeEvent)="changePrimaryPhoto($event)"></app-photo-editor>
+            </tab>
+            <tab heading="Contact">
+              <h1>Contact Detail</h1>
+              <p>This should be restricted area and only registered user should be able to see seller contact details</p>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
